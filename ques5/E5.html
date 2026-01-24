@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <link rel="stylesheet" href="E5.css">
+</head>
+<body>
+
+<div class="todo-container">
+    <h2>To-Do List</h2>
+
+    <input type="text" id="taskInput" placeholder="Enter task">
+    <input type="date" id="dueDate">
+    <button id="addBtn">Add Task</button>
+
+    <select id="filter">
+        <option value="all">All</option>
+        <option value="completed">Completed</option>
+        <option value="pending">Pending</option>
+    </select>
+
+    <ul id="taskList"></ul>
+</div>
+
+<script src="E5.js"></script>
+</body>
+</html>
