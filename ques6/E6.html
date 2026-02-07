@@ -1,29 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List App</title>
-    <link rel="stylesheet" href="E6.css">
-</head>
-<body>
+// Task type
+type Task = {
+    id: number;
+    text: string;
+    date: string;
+    completed: boolean;
+};
 
-<div class="todo-container">
-    <h2>To-Do List</h2>
+// Get DOM elements
+const taskInput = document.getElementById("taskInput") as HTMLInputElement;
+const dueDateInput = document.getElementById("dueDate") as HTMLInputElement;
+const addBtn = document.getElementById("addBtn") as HTMLButtonElement;
+const taskList = document.getElementById("taskList") as HTMLUListElement;
+const filter = document.getElementById("filter") as HTMLSelectElement;
 
-    <input type="text" id="taskInput" placeholder="Enter task">
-    <input type="date" id="dueDate">
-    <button id="addBtn">Add Task</button>
+// Task array
+let tasks: Task[] = [];
 
-    <select id="filter">
-        <option value="all">All</option>
-        <option value="completed">Completed</option>
-        <option value="pending">Pending</option>
-    </select>
+// Add task
+addBtn.addEventListener("click", (): void => {
+    const text: string = taskInput.value.trim();
+    const date: string = dueDateInput.value;
 
-    <ul id="taskList"></ul>
-</div>
+    if (text === "") return;
 
-<script src="E6.js"></script>
-</body>
-</html>
+    const task: Task = {
+        id: Date.now(),
+        text: text,
+        date: date,
+        completed: false
+    };
+
+    tasks.push(task);
+
+    taskInput.value = "";
+    dueDateInput.value = "";
+
+    displayTasks();
+});
+
+// Display tasks
+function displayTasks(): void {
+    taskList.innerHTML = "";
+
+    let filteredTasks: Task[] = tasks;
+
+    if (filter.value === "completed") {
+        filteredTasks = tasks.filter(task => task.completed);
+    } 
+    else if (filter.value === "pending") {
+        filteredTasks = tasks.filter(task => !task.completed);
+    }
+
+    for (const task of filteredTasks) {
+        const li = document.createElement("li");
+
+        if (task.completed) {
+            li.classList.add("completed");
+        }
+
+        // Task text
+        const span = document.createElement("span");
+        span.textContent = task.text;
+        span.onclick = (): void => {
+            task.completed = !task.completed;
+            displayTasks();
+        };
+
+        // Due date
+        const dateSpan = document.createElement("span");
+        dateSpan.className = "date";
+        dateSpan.textContent = task.date;
+
+        // Delete button
+        const delBtn = document.createElement("button");
+        delBtn.textContent = "❌";
+        delBtn.className = "small";
+        delBtn.onclick = (): void => {
+            tasks = tasks.filter(t => t.id !== task.id);
+            displayTasks();
+        };
+
+        li.appendChild(span);
+        li.appendChild(dateSpan);
+        li.appendChild(delBtn);
+        taskList.appendChild(li);
+    }
+}
+
+// Filter change
+filter.addEventListener("change", displayTasks);

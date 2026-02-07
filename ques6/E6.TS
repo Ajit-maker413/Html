@@ -39,7 +39,8 @@ addBtn.addEventListener("click", (): void => {
 
 // Display tasks
 function displayTasks(): void {
-    taskList.innerHTML = "";
+   taskList.innerHTML = "";
+
 
     let filteredTasks: Task[] = tasks;
 
