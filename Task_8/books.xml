@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog>
+    <book>
+        <title>The Midnight Library</title>
+        <author>Matt Haig</author>
+        <genre>Fiction</genre>
+        <price>350</price>
+        <publish_date>2020-08-13</publish_date>
+    </book>
+    <book>
+        <title>Project Hail Mary</title>
+        <author>Andy Weir</author>
+        <genre>Sci-Fi</genre>
+        <price>650</price>
+        <publish_date>2021-05-04</publish_date>
+    </book>
+    <book>
+        <title>Atomic Habits</title>
+        <author>James Clear</author>
+        <genre>Self-Help</genre>
+        <price>420</price>
+        <publish_date>2018-10-16</publish_date>
+    </book>
+    <book>
+        <title>Dune</title>
+        <author>Frank Herbert</author>
+        <genre>Sci-Fi</genre>
+        <price>580</price>
+        <publish_date>1965-08-01</publish_date>
+    </book>
+    <book>
+        <title>The Great Gatsby</title>
+        <author>F. Scott Fitzgerald</author>
+        <genre>Classic</genre>
+        <price>299</price>
+        <publish_date>1925-04-10</publish_date>
+    </book>
+    <book>
+        <title>Foundation</title>
+        <author>Isaac Asimov</author>
+        <genre>Sci-Fi</genre>
+        <price>550</price>
+        <publish_date>1951-06-01</publish_date>
+    </book>
+    <book>
+        <title>The Hobbit</title>
+        <author>J.R.R. Tolkien</author>
+        <genre>Fantasy</genre>
+        <price>1000</price>
+        <publish_date>1937-09-21</publish_date>
+    </book>
+</catalog>

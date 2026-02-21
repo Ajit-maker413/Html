@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Catalog Filter</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <div class="filter-bar">
+        <span>Genre:</span>
+        <select id="genreFilter">
+            <option value="All">All</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="Self-Help">Self-Help</option>
+        </select>
+
+        <span>Author:</span>
+        <input type="text" id="authorInput" placeholder="Enter author">
+
+        <span>Max Price:</span>
+        <input type="text" id="priceInput" placeholder="Enter price">
+
+        <button id="applyFilter">Apply Filter</button>
+    </div>
+
+    <table id="bookTable">
+        <thead>
+            <tr>
+                <th style="width: 35%;">Title</th>
+                <th style="width: 25%;">Author</th>
+                <th style="width: 15%;">Genre</th>
+                <th style="width: 10%;">Price</th>
+                <th style="width: 15%;">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            </tbody>
+    </table>
+
+    <script>
+        $(document).ready(function() {
+            let bookList = [];
+
+            // Load and Parse XML to JSON
+            $.ajax({
+                type: "GET",
+                url: "books.xml",
+                dataType: "xml",
+                success: function(xml) {
+                    $(xml).find('book').each(function() {
+                        bookList.push({
+                            title: $(this).find('title').text(),
+                            author: $(this).find('author').text(),
+                            genre: $(this).find('genre').text(),
+                            price: parseFloat($(this).find('price').text()),
+                            date: $(this).find('publish_date').text()
+                        });
+                    });
+                    renderTable(bookList); // Show all books initially
+                },
+                error: function() {
+                    console.log("Error: Use a local server (like Live Server) to load XML.");
+                }
+            });
+
+            function renderTable(data) {
+                let html = '';
+                data.forEach(book => {
+                    html += `<tr>
+                        <td>${book.title}</td>
+                        <td>${book.author}</td>
+                        <td>${book.genre}</td>
+                        <td>${book.price}</td>
+                        <td>${book.date}</td>
+                    </tr>`;
+                });
+                $('#bookTable tbody').html(html);
+            }
+
+            // Manual Apply Filter Logic
+            $('#applyFilter').on('click', function() {
+                const genreVal = $('#genreFilter').val();
+                const authorVal = $('#authorInput').val().toLowerCase();
+                const priceVal = parseFloat($('#priceInput').val());
+
+                const filtered = bookList.filter(book => {
+                    const matchGenre = (genreVal === "All" || book.genre === genreVal);
+                    const matchAuthor = book.author.toLowerCase().includes(authorVal);
+                    const matchPrice = isNaN(priceVal) || book.price <= priceVal;
+                    
+                    return matchGenre && matchAuthor && matchPrice;
+                });
+
+                renderTable(filtered);
+            });
+        });
+    </script>
+</body>
+</html>
