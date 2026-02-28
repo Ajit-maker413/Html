@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Services - Tabbed Navigation</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <div id="main-tabs" class="tabs-wrapper">
+        <ul class="tab-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Our Expertise</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+
+        <div class="tab-container">
+            <div id="home" class="tab-panel">
+                <h2>Innovative Solutions for Modern Web</h2>
+                <p>Welcome to our platform. We specialize in creating high-performance web applications using the latest technologies. Our goal is to bridge the gap between complex data and intuitive user interfaces.</p>
+                <ul>
+                    <li><strong>Dynamic Forms:</strong> Custom JSON-driven interfaces.</li>
+                    <li><strong>Data Conversion:</strong> Seamless XML to JSON processing.</li>
+                    <li><strong>Custom Plugins:</strong> Reusable jQuery components.</li>
+                </ul>
+            </div>
+
+            <div id="about" class="tab-panel">
+                <h2>Our Expertise & Mission</h2>
+                <p>With over a decade of experience in software development, our team focuses on clean code and scalable architecture. We believe that every line of code should serve a purpose and provide value to the end user.</p>
+                <p>We leverage tools like <strong>jQuery, Java, and AJAX</strong> to build robust systems that handle real-time data manipulation and complex validation logic.</p>
+            </div>
+
+            <div id="portfolio" class="tab-panel">
+                <h2>Featured Projects</h2>
+                <p>Check out some of our recent work where we implemented advanced filtering and dynamic rendering:</p>
+                <div class="project-grid">
+                    <div class="project-item"><strong>Book Catalog:</strong> XML-based filtering system.</div>
+                    <div class="project-item"><strong>User Portal:</strong> Dynamic registration with conditional logic.</div>
+                    <div class="project-item"><strong>Admin Dashboard:</strong> Tab-based data management.</div>
+                </div>
+            </div>
+
+            <div id="contact" class="tab-panel">
+                <h2>Let's Get In Touch</h2>
+                <p>Ready to start your next project? Reach out to us through any of the channels below. Our support team is available 24/7 to assist with your technical inquiries.</p>
+                <p><strong>Office:</strong> 123 Tech Avenue, Silicon Valley, CA</p>
+                <p><strong>Email:</strong> support@dev-solutions.com</p>
+                <p><strong>Phone:</strong> +1 (555) 010-9988</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="jquery.tabs.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#main-tabs').tabify({
+                activeClass: 'selected-tab',
+                animationSpeed: 350,
+                defaultTab: 0
+            });
+        });
+    </script>
+</body>
+</html>
